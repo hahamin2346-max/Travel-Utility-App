@@ -1,0 +1,129 @@
+package com.example.travelutilityapp.ui.home
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.Saver
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.travelutilityapp.data.ScheduleRepository
+import com.example.travelutilityapp.data.TrainingPeriodPreferences
+import com.example.travelutilityapp.ui.components.AppTab
+import com.example.travelutilityapp.ui.components.AppTabBar
+import com.example.travelutilityapp.ui.theme.TravelUtilityAppTheme
+import com.example.travelutilityapp.ui.theme.YwBackground
+import kotlinx.coroutines.delay
+import java.time.LocalDate
+import java.time.LocalDateTime
+
+private val LocalDateSaver = Saver<LocalDate, Long>(
+    save = { it.toEpochDay() },
+    restore = { LocalDate.ofEpochDay(it) }
+)
+
+@Composable
+fun HomeScreen(
+    onNavigateToSchedule: () -> Unit = {},
+    modifier: Modifier = Modifier
+) {
+    val context = LocalContext.current
+    val preferences = remember { TrainingPeriodPreferences(context) }
+    val savedPeriod = remember { preferences.load() }
+    val scheduleEntries = remember { ScheduleRepository(context).load() }
+    val today = remember { LocalDate.now() }
+    val defaultStart = remember { LocalDate.of(today.year, 9, 6) }
+    val defaultEnd = remember { LocalDate.of(today.year, 11, 28) }
+
+    var startDate by rememberSaveable(stateSaver = LocalDateSaver) {
+        mutableStateOf(savedPeriod?.first ?: defaultStart)
+    }
+    var endDate by rememberSaveable(stateSaver = LocalDateSaver) {
+        mutableStateOf(savedPeriod?.second ?: defaultEnd)
+    }
+    var showDatePicker by rememberSaveable { mutableStateOf(false) }
+    var selectedTab by remember { mutableStateOf(AppTab.Home) }
+
+    val stats = remember(startDate, endDate) { computeTrainingPeriodStats(startDate, endDate) }
+
+    var now by remember { mutableStateOf(LocalDateTime.now()) }
+    LaunchedEffect(Unit) {
+        while (true) {
+            delay(30_000)
+            now = LocalDateTime.now()
+        }
+    }
+    val nextClassStatus = remember(scheduleEntries, now) { computeNextClassStatus(scheduleEntries, now) }
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(YwBackground)
+    ) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .padding(start = 20.dp, end = 20.dp, top = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            HomeHeader(
+                greeting = "안녕, 여원이 !",
+                subtitle = "오늘도 화이팅 어학연수 생활"
+            )
+            DDayHeroCard(
+                dateRangeLabel = stats.dateRangeLabel,
+                dDayLabel = stats.dDayLabel,
+                weeksLeftLabel = stats.weeksLeftLabel,
+                progress = stats.progress,
+                onEditDatesClick = { showDatePicker = true }
+            )
+            NextClassPanel(status = nextClassStatus)
+            FeatureGrid(onScheduleClick = onNavigateToSchedule)
+        }
+        AppTabBar(
+            selectedTab = selectedTab,
+            onTabSelected = { tab ->
+                selectedTab = tab
+                if (tab == AppTab.Schedule) onNavigateToSchedule()
+            },
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+        )
+    }
+
+    if (showDatePicker) {
+        TrainingPeriodPickerDialog(
+            initialStart = startDate,
+            initialEnd = endDate,
+            onDismiss = { showDatePicker = false },
+            onConfirm = { newStart, newEnd ->
+                startDate = newStart
+                endDate = newEnd
+                preferences.save(newStart, newEnd)
+                showDatePicker = false
+            }
+        )
+    }
+}
+
+@Preview(showBackground = true, widthDp = 360, heightDp = 780)
+@Composable
+private fun HomeScreenPreview() {
+    TravelUtilityAppTheme {
+        HomeScreen()
+    }
+}
