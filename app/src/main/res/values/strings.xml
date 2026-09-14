@@ -1,3 +1,88 @@
 <resources>
     <string name="app_name">TravelUtilityApp</string>
+
+    <string name="cd_settings">설정</string>
+    <string name="cd_close">닫기</string>
+    <string name="cd_delete">삭제</string>
+    <string name="cd_lms_import">웹에서 시간표 가져오기</string>
+    <string name="cd_edit_schedule">일정 편집</string>
+    <string name="cd_edit_period">연수 기간 수정</string>
+    <string name="cd_back">뒤로가기</string>
+
+    <string name="action_confirm">확인</string>
+    <string name="action_cancel">취소</string>
+    <string name="action_save">저장</string>
+
+    <string name="home_greeting">안녕, 여원이 !</string>
+    <string name="home_subtitle">오늘도 화이팅 어학연수 생활</string>
+
+    <string name="dday_label">남은 연수 기간까지</string>
+    <string name="dday_progress">진행률 %1$d%%</string>
+    <string name="dday_weeks_left">%1$d주 남음</string>
+    <string name="dday_today">오늘 종료</string>
+    <string name="dday_finished">연수 종료</string>
+
+    <string name="next_class_weekend">주말입니다</string>
+    <string name="next_class_none_registered">수업이 없습니다</string>
+    <string name="next_class_finished_today">오늘 수업이 모두 끝났어요</string>
+    <string name="next_class_in_class">수업 중</string>
+    <string name="next_class_starts_in">%1$d분 뒤 수업 시작</string>
+
+    <string name="schedule_row_course_prefix">과목 : %1$s</string>
+    <string name="schedule_row_teacher_prefix">교사 : %1$s</string>
+
+    <string name="lms_import_title">LMS 시간표 가져오기</string>
+    <string name="lms_import_action">가져오기</string>
+    <string name="lms_import_loading">가져오는 중...</string>
+    <string name="lms_import_instructions">사이트에 로그인한 뒤 시간표가 보이면 위의 "가져오기" 버튼을 눌러주세요.</string>
+    <string name="lms_import_error_no_entries">시간표를 불러오지 못했어요. 로그인 상태를 확인하고 다시 시도해주세요.</string>
+    <string name="lms_import_error_failed">가져오기에 실패했어요: %1$s</string>
+
+    <string name="schedule_edit_title">시간표 수정</string>
+    <string name="schedule_edit_empty">등록된 일정이 없어요. 아래 버튼으로 추가해보세요.</string>
+    <string name="schedule_edit_add">일정 추가하기</string>
+    <string name="schedule_edit_save">저장하기</string>
+
+    <string name="field_course">과목</string>
+    <string name="field_teacher">교사</string>
+
+    <string name="schedule_screen_subtitle">이번 학기 수업 일정을 확인해요</string>
+    <string name="schedule_screen_empty_title">등록된 수업이 없어요</string>
+    <string name="schedule_screen_empty_subtitle">오른쪽 아래 편집 버튼으로 추가해보세요</string>
+
+    <string name="time_picker_title">수업 시간</string>
+    <string name="time_picker_start">시작</string>
+    <string name="time_picker_end">종료</string>
+
+    <string name="nav_home">홈</string>
+    <string name="nav_schedule">시간표</string>
+    <string name="nav_checklist">체크리스트</string>
+    <string name="nav_vocab">단어장</string>
+    <string name="nav_budget">가계부</string>
+
+    <string name="feature_checklist_subtitle">오늘 할 일 3개</string>
+    <string name="feature_vocab_subtitle">복습 카드 12개</string>
+    <string name="feature_budget_subtitle">이번 주 42만원</string>
+    <string name="feature_schedule_subtitle">다음 수업 09:00</string>
+
+    <string name="settings_title">설정</string>
+    <string name="settings_language_label">언어</string>
+    <string name="settings_language_system">시스템 기본</string>
+    <string name="settings_language_korean">한국어</string>
+    <string name="settings_language_english">English</string>
+
+    <string name="action_delete">삭제</string>
+
+    <string name="checklist_subtitle">할 일을 놓치지 않게 정리해요</string>
+    <string name="checklist_segment_today">오늘의 할일</string>
+    <string name="checklist_segment_after_return">돌아와서 할일</string>
+    <string name="checklist_empty">등록된 할 일이 없어요. 위 추가 버튼으로 시작해보세요.</string>
+    <string name="checklist_add_title">새 할 일 추가</string>
+    <string name="checklist_add_placeholder">할 일을 입력하세요</string>
+    <string name="checklist_add_confirm">추가</string>
+    <string name="checklist_edit_title">할 일 수정</string>
+    <string name="checklist_delete_confirm_title">삭제할까요?</string>
+    <string name="checklist_delete_confirm_message">이 항목을 삭제하면 되돌릴 수 없어요.</string>
+    <string name="cd_add_item">할 일 추가</string>
+    <string name="cd_edit_item">할 일 수정</string>
 </resources>

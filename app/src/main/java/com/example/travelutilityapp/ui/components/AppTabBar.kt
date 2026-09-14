@@ -26,21 +26,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.theme.YwBorderSoft
 import com.example.travelutilityapp.ui.theme.YwPrimary
 import com.example.travelutilityapp.ui.theme.YwPrimarySoft
 import com.example.travelutilityapp.ui.theme.YwTextSecondary
 
 /** The 5 top-level destinations of the app, shared by every screen's bottom tab bar. */
-enum class AppTab(val label: String, val icon: ImageVector) {
-    Home("홈", Icons.Outlined.Home),
-    Schedule("시간표", Icons.Outlined.CalendarMonth),
-    Checklist("체크리스트", Icons.Outlined.CheckBox),
-    Vocab("단어장", Icons.AutoMirrored.Outlined.MenuBook),
-    Budget("가계부", Icons.Outlined.AccountBalanceWallet)
+enum class AppTab(val labelRes: Int, val icon: ImageVector) {
+    Home(R.string.nav_home, Icons.Outlined.Home),
+    Schedule(R.string.nav_schedule, Icons.Outlined.CalendarMonth),
+    Checklist(R.string.nav_checklist, Icons.Outlined.CheckBox),
+    Vocab(R.string.nav_vocab, Icons.AutoMirrored.Outlined.MenuBook),
+    Budget(R.string.nav_budget, Icons.Outlined.AccountBalanceWallet)
 }
 
 @Composable
@@ -60,6 +62,7 @@ fun AppTabBar(
     ) {
         AppTab.entries.forEach { tab ->
             val selected = tab == selectedTab
+            val label = stringResource(tab.labelRes)
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -72,12 +75,12 @@ fun AppTabBar(
             ) {
                 Icon(
                     imageVector = tab.icon,
-                    contentDescription = tab.label,
+                    contentDescription = label,
                     tint = if (selected) YwPrimary else YwTextSecondary,
                     modifier = Modifier.size(18.dp)
                 )
                 Text(
-                    text = tab.label,
+                    text = label,
                     color = if (selected) YwPrimary else YwTextSecondary,
                     fontSize = 9.sp,
                     fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Normal

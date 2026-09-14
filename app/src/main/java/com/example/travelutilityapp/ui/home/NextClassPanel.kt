@@ -23,9 +23,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.components.ScheduleRow
 import com.example.travelutilityapp.ui.schedule.badgeColors
 import com.example.travelutilityapp.ui.schedule.timeRangeLabel
@@ -49,16 +51,32 @@ fun NextClassPanel(
     ) {
         when (status) {
             is NextClassStatus.Weekend ->
-                StatusHeadline(icon = Icons.Outlined.Weekend, text = "주말입니다", tint = YwTextSecondary)
+                StatusHeadline(
+                    icon = Icons.Outlined.Weekend,
+                    text = stringResource(R.string.next_class_weekend),
+                    tint = YwTextSecondary
+                )
 
             is NextClassStatus.NoClassesRegistered ->
-                StatusHeadline(icon = Icons.Outlined.EventBusy, text = "수업이 없습니다", tint = YwTextSecondary)
+                StatusHeadline(
+                    icon = Icons.Outlined.EventBusy,
+                    text = stringResource(R.string.next_class_none_registered),
+                    tint = YwTextSecondary
+                )
 
             is NextClassStatus.FinishedForToday ->
-                StatusHeadline(icon = Icons.Outlined.EventAvailable, text = "오늘 수업이 모두 끝났어요", tint = YwTextSecondary)
+                StatusHeadline(
+                    icon = Icons.Outlined.EventAvailable,
+                    text = stringResource(R.string.next_class_finished_today),
+                    tint = YwTextSecondary
+                )
 
             is NextClassStatus.InClass -> {
-                StatusHeadline(icon = Icons.Outlined.Alarm, text = "수업 중", tint = YwPrimary)
+                StatusHeadline(
+                    icon = Icons.Outlined.Alarm,
+                    text = stringResource(R.string.next_class_in_class),
+                    tint = YwPrimary
+                )
                 Divider()
                 val (badgeColor, labelColor) = status.entry.type.badgeColors()
                 ScheduleRow(
@@ -73,7 +91,11 @@ fun NextClassPanel(
             }
 
             is NextClassStatus.Upcoming -> {
-                StatusHeadline(icon = Icons.Outlined.Alarm, text = "${status.minutesUntilStart}분 뒤 수업 시작", tint = YwPrimary)
+                StatusHeadline(
+                    icon = Icons.Outlined.Alarm,
+                    text = stringResource(R.string.next_class_starts_in, status.minutesUntilStart),
+                    tint = YwPrimary
+                )
                 Divider()
                 val (badgeColor, labelColor) = status.entry.type.badgeColors()
                 ScheduleRow(

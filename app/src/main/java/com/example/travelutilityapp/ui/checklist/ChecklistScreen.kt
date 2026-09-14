@@ -1,4 +1,4 @@
-package com.example.travelutilityapp.ui.schedule
+package com.example.travelutilityapp.ui.checklist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,14 +17,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CloudDownload
-import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,15 +32,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.travelutilityapp.R
-import com.example.travelutilityapp.data.ScheduleRepository
+import com.example.travelutilityapp.data.ChecklistRepository
 import com.example.travelutilityapp.ui.components.AppTab
 import com.example.travelutilityapp.ui.components.AppTabBar
-import com.example.travelutilityapp.ui.components.ScheduleRow
-import com.example.travelutilityapp.ui.theme.TravelUtilityAppTheme
+import com.example.travelutilityapp.ui.components.SegmentedControl
 import com.example.travelutilityapp.ui.theme.YwBackground
 import com.example.travelutilityapp.ui.theme.YwBorderSoft
 import com.example.travelutilityapp.ui.theme.YwPrimary
@@ -49,18 +47,28 @@ import com.example.travelutilityapp.ui.theme.YwTextPrimary
 import com.example.travelutilityapp.ui.theme.YwTextSecondary
 
 @Composable
-fun ScheduleScreen(
+fun ChecklistScreen(
     onNavigateHome: () -> Unit = {},
-    onNavigateToChecklist: () -> Unit = {},
+    onNavigateToSchedule: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
-    val repository = remember { ScheduleRepository(context) }
+    val repository = remember { ChecklistRepository(context) }
 
-    var entries by remember { mutableStateOf(repository.load()) }
-    var selectedTab by remember { mutableStateOf(AppTab.Schedule) }
-    var showEditSheet by remember { mutableStateOf(false) }
-    var showLmsImport by remember { mutableStateOf(false) }
+    var selectedType by rememberSaveable { mutableStateOf(ChecklistType.TODAY) }
+    var todayItems by remember { mutableStateOf(repository.load(ChecklistType.TODAY)) }
+    var afterReturnItems by remember { mutableStateOf(repository.load(ChecklistType.AFTER_RETURN)) }
+    var selectedTab by remember { mutableStateOf(AppTab.Checklist) }
+    var showAddDialog by remember { mutableStateOf(false) }
+    var editingItem by remember { mutableStateOf<ChecklistItem?>(null) }
+
+    val currentItems = if (selectedType == ChecklistType.TODAY) todayItems else afterReturnItems
+
+    fun updateCurrentItems(update: (List<ChecklistItem>) -> List<ChecklistItem>) {
+        val updated = update(currentItems)
+        if (selectedType == ChecklistType.TODAY) todayItems = updated else afterReturnItems = updated
+        repository.save(selectedType, updated)
+    }
 
     Box(
         modifier = modifier
@@ -74,7 +82,7 @@ fun ScheduleScreen(
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState())
                     .padding(start = 20.dp, end = 20.dp, top = 12.dp),
-                verticalArrangement = Arrangement.spacedBy(18.dp)
+                verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -83,13 +91,13 @@ fun ScheduleScreen(
                 ) {
                     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                         Text(
-                            text = stringResource(R.string.nav_schedule),
+                            text = stringResource(R.string.nav_checklist),
                             color = YwTextPrimary,
                             fontSize = 20.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = stringResource(R.string.schedule_screen_subtitle),
+                            text = stringResource(R.string.checklist_subtitle),
                             color = YwTextSecondary,
                             fontSize = 13.sp
                         )
@@ -97,40 +105,41 @@ fun ScheduleScreen(
                     Box(
                         modifier = Modifier
                             .size(38.dp)
-                            .background(YwSurface, CircleShape)
-                            .border(1.dp, YwBorderSoft, CircleShape)
-                            .clickable { showLmsImport = true },
+                            .background(YwPrimary, CircleShape)
+                            .clickable { showAddDialog = true },
                         contentAlignment = Alignment.Center
                     ) {
                         Icon(
-                            imageVector = Icons.Outlined.CloudDownload,
-                            contentDescription = stringResource(R.string.cd_lms_import),
-                            tint = YwTextSecondary,
+                            imageVector = Icons.Outlined.Add,
+                            contentDescription = stringResource(R.string.cd_add_item),
+                            tint = Color.White,
                             modifier = Modifier.size(18.dp)
                         )
                     }
                 }
 
-                if (entries.isEmpty()) {
+                val segmentLabels = listOf(
+                    stringResource(R.string.checklist_segment_today),
+                    stringResource(R.string.checklist_segment_after_return)
+                )
+                SegmentedControl(
+                    options = segmentLabels,
+                    selectedIndex = if (selectedType == ChecklistType.TODAY) 0 else 1,
+                    onSelect = { index ->
+                        selectedType = if (index == 0) ChecklistType.TODAY else ChecklistType.AFTER_RETURN
+                    }
+                )
+
+                if (currentItems.isEmpty()) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(YwSurface, RoundedCornerShape(20.dp))
                             .border(1.dp, YwBorderSoft, RoundedCornerShape(20.dp))
                             .padding(24.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(
-                            text = stringResource(R.string.schedule_screen_empty_title),
-                            color = YwTextSecondary,
-                            fontSize = 13.sp
-                        )
-                        Text(
-                            text = stringResource(R.string.schedule_screen_empty_subtitle),
-                            color = YwTextSecondary,
-                            fontSize = 12.sp
-                        )
+                        Text(text = stringResource(R.string.checklist_empty), color = YwTextSecondary, fontSize = 13.sp)
                     }
                 } else {
                     Column(
@@ -140,18 +149,17 @@ fun ScheduleScreen(
                             .border(1.dp, YwBorderSoft, RoundedCornerShape(20.dp))
                             .padding(horizontal = 16.dp)
                     ) {
-                        entries.forEachIndexed { index, entry ->
-                            val (badgeColor, labelColor) = entry.type.badgeColors()
-                            ScheduleRow(
-                                typeLabel = entry.type.label,
-                                typeBadgeColor = badgeColor,
-                                typeLabelColor = labelColor,
-                                timeText = entry.timeRangeLabel(),
-                                roomLabel = entry.room,
-                                course = entry.course,
-                                teacher = entry.teacher
+                        currentItems.forEachIndexed { index, item ->
+                            ChecklistRow(
+                                item = item,
+                                onToggleChecked = {
+                                    updateCurrentItems { list ->
+                                        list.map { if (it.id == item.id) it.copy(isChecked = !it.isChecked) else it }
+                                    }
+                                },
+                                onEditClick = { editingItem = item }
                             )
-                            if (index != entries.lastIndex) {
+                            if (index != currentItems.lastIndex) {
                                 Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -169,60 +177,39 @@ fun ScheduleScreen(
                     selectedTab = tab
                     when (tab) {
                         AppTab.Home -> onNavigateHome()
-                        AppTab.Checklist -> onNavigateToChecklist()
+                        AppTab.Schedule -> onNavigateToSchedule()
                         else -> {}
                     }
                 },
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
             )
         }
-
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(end = 20.dp, bottom = 88.dp)
-                .size(56.dp)
-                .background(YwPrimary, CircleShape)
-                .clickable { showEditSheet = true },
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.Edit,
-                contentDescription = stringResource(R.string.cd_edit_schedule),
-                tint = Color.White,
-                modifier = Modifier.size(22.dp)
-            )
-        }
     }
 
-    if (showEditSheet) {
-        ScheduleEditSheet(
-            entries = entries,
-            onDismiss = { showEditSheet = false },
-            onSave = { updated ->
-                entries = updated
-                repository.save(updated)
-                showEditSheet = false
+    if (showAddDialog) {
+        ChecklistAddDialog(
+            onDismiss = { showAddDialog = false },
+            onConfirm = { text ->
+                updateCurrentItems { list -> list + ChecklistItem(content = text) }
+                showAddDialog = false
             }
         )
     }
 
-    if (showLmsImport) {
-        LmsImportDialog(
-            onDismiss = { showLmsImport = false },
-            onImported = { imported ->
-                entries = imported
-                repository.save(imported)
-                showLmsImport = false
+    editingItem?.let { item ->
+        ChecklistEditDialog(
+            item = item,
+            onDismiss = { editingItem = null },
+            onSave = { newText ->
+                updateCurrentItems { list ->
+                    list.map { if (it.id == item.id) it.copy(content = newText) else it }
+                }
+                editingItem = null
+            },
+            onDelete = {
+                updateCurrentItems { list -> list.filterNot { it.id == item.id } }
+                editingItem = null
             }
         )
-    }
-}
-
-@Preview(showBackground = true, widthDp = 360, heightDp = 780)
-@Composable
-private fun ScheduleScreenPreview() {
-    TravelUtilityAppTheme {
-        ScheduleScreen()
     }
 }

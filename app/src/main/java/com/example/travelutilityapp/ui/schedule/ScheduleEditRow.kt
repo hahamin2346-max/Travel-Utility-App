@@ -30,11 +30,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.theme.YwBackground
 import com.example.travelutilityapp.ui.theme.YwBorderSoft
 import com.example.travelutilityapp.ui.theme.YwTextPrimary
@@ -150,7 +152,7 @@ fun ScheduleEditRow(
             ) {
                 Icon(
                     imageVector = Icons.Outlined.DeleteOutline,
-                    contentDescription = "삭제",
+                    contentDescription = stringResource(R.string.cd_delete),
                     tint = YwTextSecondary,
                     modifier = Modifier.size(16.dp)
                 )
@@ -165,13 +167,13 @@ fun ScheduleEditRow(
             CompactTextField(
                 value = entry.course,
                 onValueChange = onCourseChange,
-                placeholder = "과목",
+                placeholder = stringResource(R.string.field_course),
                 modifier = Modifier.weight(1f)
             )
             CompactTextField(
                 value = entry.teacher,
                 onValueChange = onTeacherChange,
-                placeholder = "교사",
+                placeholder = stringResource(R.string.field_teacher),
                 modifier = Modifier.weight(1f)
             )
         }

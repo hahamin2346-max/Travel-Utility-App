@@ -17,10 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.theme.YwTextPrimary
 import com.example.travelutilityapp.ui.theme.YwTextSecondary
 import com.example.travelutilityapp.ui.theme.YwTextSecondaryStrong
@@ -77,10 +79,11 @@ fun ScheduleRow(
             }
         }
 
-        val detailLine = listOfNotNull(
-            course.takeIf { it.isNotBlank() }?.let { "과목 : $it" },
-            teacher.takeIf { it.isNotBlank() }?.let { "교사 : $it" }
-        ).joinToString("   ")
+        val courseText = course.takeIf { it.isNotBlank() }
+            ?.let { stringResource(R.string.schedule_row_course_prefix, it) }
+        val teacherText = teacher.takeIf { it.isNotBlank() }
+            ?.let { stringResource(R.string.schedule_row_teacher_prefix, it) }
+        val detailLine = listOfNotNull(courseText, teacherText).joinToString("   ")
         if (detailLine.isNotEmpty()) {
             Text(
                 text = detailLine,

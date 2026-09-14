@@ -34,9 +34,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.theme.YwBackground
 import com.example.travelutilityapp.ui.theme.YwBorderSoft
 import com.example.travelutilityapp.ui.theme.YwPrimary
@@ -75,7 +77,12 @@ fun ScheduleEditSheet(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("시간표 수정", color = YwTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                Text(
+                    stringResource(R.string.schedule_edit_title),
+                    color = YwTextPrimary,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
                 Box(
                     modifier = Modifier
                         .size(32.dp)
@@ -85,7 +92,7 @@ fun ScheduleEditSheet(
                 ) {
                     Icon(
                         imageVector = Icons.Outlined.Close,
-                        contentDescription = "닫기",
+                        contentDescription = stringResource(R.string.cd_close),
                         tint = YwTextSecondary,
                         modifier = Modifier.size(16.dp)
                     )
@@ -94,7 +101,7 @@ fun ScheduleEditSheet(
 
             if (draftEntries.isEmpty()) {
                 Text(
-                    text = "등록된 일정이 없어요. 아래 버튼으로 추가해보세요.",
+                    text = stringResource(R.string.schedule_edit_empty),
                     color = YwTextSecondary,
                     fontSize = 13.sp
                 )
@@ -154,7 +161,7 @@ fun ScheduleEditSheet(
             ) {
                 Icon(imageVector = Icons.Outlined.Add, contentDescription = null, modifier = Modifier.size(15.dp))
                 Spacer(Modifier.width(6.dp))
-                Text("일정 추가하기", fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.schedule_edit_add), fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
             }
 
             Button(
@@ -165,7 +172,7 @@ fun ScheduleEditSheet(
                 shape = RoundedCornerShape(14.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = YwPrimary, contentColor = Color.White)
             ) {
-                Text("저장하기", fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                Text(stringResource(R.string.schedule_edit_save), fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
             }
         }
     }

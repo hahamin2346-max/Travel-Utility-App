@@ -14,9 +14,11 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.example.travelutilityapp.R
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneOffset
@@ -52,7 +54,7 @@ fun TrainingPeriodPickerDialog(
                     horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(onClick = onDismiss) {
-                        Text("취소")
+                        Text(stringResource(R.string.action_cancel))
                     }
                     TextButton(
                         onClick = {
@@ -63,7 +65,7 @@ fun TrainingPeriodPickerDialog(
                             }
                         }
                     ) {
-                        Text("저장")
+                        Text(stringResource(R.string.action_save))
                     }
                 }
             }

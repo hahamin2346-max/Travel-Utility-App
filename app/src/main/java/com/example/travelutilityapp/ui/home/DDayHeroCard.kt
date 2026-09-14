@@ -19,10 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.theme.YwBackground
 import com.example.travelutilityapp.ui.theme.YwPrimary
 
@@ -52,7 +54,7 @@ fun DDayHeroCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "남은 연수 기간까지",
+                text = stringResource(R.string.dday_label),
                 color = Color.White.copy(alpha = 0.8f),
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Medium
@@ -68,7 +70,7 @@ fun DDayHeroCard(
                 )
                 Icon(
                     imageVector = Icons.Outlined.EditCalendar,
-                    contentDescription = "연수 기간 수정",
+                    contentDescription = stringResource(R.string.cd_edit_period),
                     tint = Color.White.copy(alpha = 0.85f),
                     modifier = Modifier
                         .size(16.dp)
@@ -92,7 +94,7 @@ fun DDayHeroCard(
                 fontWeight = FontWeight.Medium
             )
             Text(
-                text = "진행률 ${(progress * 100).toInt()}%",
+                text = stringResource(R.string.dday_progress, (progress * 100).toInt()),
                 color = Color.White.copy(alpha = 0.9f),
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Medium

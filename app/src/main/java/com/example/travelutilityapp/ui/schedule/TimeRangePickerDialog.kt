@@ -12,9 +12,11 @@ import androidx.compose.material3.TimeInput
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.theme.YwTextSecondary
 import java.time.LocalTime
 
@@ -39,15 +41,25 @@ fun TimeRangePickerDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("수업 시간") },
+        title = { Text(stringResource(R.string.time_picker_title)) },
         text = {
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text("시작", color = YwTextSecondary, fontSize = 12.sp, fontWeight = FontWeight.Medium)
+                Text(
+                    stringResource(R.string.time_picker_start),
+                    color = YwTextSecondary,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium
+                )
                 TimeInput(state = startState)
-                Text("종료", color = YwTextSecondary, fontSize = 12.sp, fontWeight = FontWeight.Medium)
+                Text(
+                    stringResource(R.string.time_picker_end),
+                    color = YwTextSecondary,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Medium
+                )
                 TimeInput(state = endState)
             }
         },
@@ -60,12 +72,12 @@ fun TimeRangePickerDialog(
                     )
                 }
             ) {
-                Text("확인")
+                Text(stringResource(R.string.action_confirm))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("취소")
+                Text(stringResource(R.string.action_cancel))
             }
         }
     )

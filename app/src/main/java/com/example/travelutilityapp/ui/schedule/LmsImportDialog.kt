@@ -32,12 +32,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.data.parseLmsScheduleResponse
 import com.example.travelutilityapp.ui.theme.YwBackground
 import com.example.travelutilityapp.ui.theme.YwBorderSoft
@@ -97,20 +99,23 @@ fun LmsImportDialog(
     var isFetching by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
+    val noEntriesError = stringResource(R.string.lms_import_error_no_entries)
+    val failedErrorTemplate = stringResource(R.string.lms_import_error_failed)
+
     val bridge = remember {
         ScheduleJsBridge(
             onResult = { json ->
                 isFetching = false
                 val entries = parseLmsScheduleResponse(json)
                 if (entries.isEmpty()) {
-                    errorMessage = "시간표를 불러오지 못했어요. 로그인 상태를 확인하고 다시 시도해주세요."
+                    errorMessage = noEntriesError
                 } else {
                     onImported(entries)
                 }
             },
             onError = { message ->
                 isFetching = false
-                errorMessage = "가져오기에 실패했어요: $message"
+                errorMessage = String.format(failedErrorTemplate, message)
             }
         )
     }
@@ -138,13 +143,13 @@ fun LmsImportDialog(
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Close,
-                            contentDescription = "닫기",
+                            contentDescription = stringResource(R.string.cd_close),
                             tint = YwTextSecondary,
                             modifier = Modifier.size(16.dp)
                         )
                     }
                     Text(
-                        text = "LMS 시간표 가져오기",
+                        text = stringResource(R.string.lms_import_title),
                         color = YwTextPrimary,
                         fontSize = 15.sp,
                         fontWeight = FontWeight.SemiBold
@@ -158,12 +163,17 @@ fun LmsImportDialog(
                         enabled = !isFetching,
                         colors = ButtonDefaults.buttonColors(containerColor = YwPrimary, contentColor = Color.White)
                     ) {
-                        Text(if (isFetching) "가져오는 중..." else "가져오기", fontSize = 13.sp)
+                        Text(
+                            text = stringResource(
+                                if (isFetching) R.string.lms_import_loading else R.string.lms_import_action
+                            ),
+                            fontSize = 13.sp
+                        )
                     }
                 }
 
                 Text(
-                    text = "사이트에 로그인한 뒤 시간표가 보이면 위의 \"가져오기\" 버튼을 눌러주세요.",
+                    text = stringResource(R.string.lms_import_instructions),
                     color = YwTextSecondary,
                     fontSize = 12.sp,
                     modifier = Modifier

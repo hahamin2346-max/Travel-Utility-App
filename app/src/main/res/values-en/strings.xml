@@ -1,0 +1,86 @@
+<resources>
+    <string name="cd_settings">Settings</string>
+    <string name="cd_close">Close</string>
+    <string name="cd_delete">Delete</string>
+    <string name="cd_lms_import">Import timetable from LMS</string>
+    <string name="cd_edit_schedule">Edit schedule</string>
+    <string name="cd_edit_period">Edit training period</string>
+    <string name="cd_back">Back</string>
+
+    <string name="action_confirm">Confirm</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+
+    <string name="home_greeting">Hi, Yeowon!</string>
+    <string name="home_subtitle">Have a great day abroad!</string>
+
+    <string name="dday_label">Time left in program</string>
+    <string name="dday_progress">Progress %1$d%%</string>
+    <string name="dday_weeks_left">%1$d weeks left</string>
+    <string name="dday_today">Ends today</string>
+    <string name="dday_finished">Program ended</string>
+
+    <string name="next_class_weekend">It\'s the weekend</string>
+    <string name="next_class_none_registered">No classes registered</string>
+    <string name="next_class_finished_today">All classes finished for today</string>
+    <string name="next_class_in_class">In class</string>
+    <string name="next_class_starts_in">Class starts in %1$d minutes.</string>
+
+    <string name="schedule_row_course_prefix">Course: %1$s</string>
+    <string name="schedule_row_teacher_prefix">Teacher: %1$s</string>
+
+    <string name="lms_import_title">Import LMS Timetable</string>
+    <string name="lms_import_action">Import</string>
+    <string name="lms_import_loading">Importing...</string>
+    <string name="lms_import_instructions">After logging in and seeing your timetable, tap the "Import" button above.</string>
+    <string name="lms_import_error_no_entries">Couldn\'t load the timetable. Please check that you\'re logged in and try again.</string>
+    <string name="lms_import_error_failed">Import failed: %1$s</string>
+
+    <string name="schedule_edit_title">Edit Timetable</string>
+    <string name="schedule_edit_empty">No schedule yet. Add one with the button below.</string>
+    <string name="schedule_edit_add">Add Class</string>
+    <string name="schedule_edit_save">Save</string>
+
+    <string name="field_course">Course</string>
+    <string name="field_teacher">Teacher</string>
+
+    <string name="schedule_screen_subtitle">Check this semester\'s class schedule</string>
+    <string name="schedule_screen_empty_title">No classes registered</string>
+    <string name="schedule_screen_empty_subtitle">Add one with the edit button at the bottom right</string>
+
+    <string name="time_picker_title">Class Time</string>
+    <string name="time_picker_start">Start</string>
+    <string name="time_picker_end">End</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_schedule">Timetable</string>
+    <string name="nav_checklist">Checklist</string>
+    <string name="nav_vocab">Vocabulary</string>
+    <string name="nav_budget">Budget</string>
+
+    <string name="feature_checklist_subtitle">3 tasks today</string>
+    <string name="feature_vocab_subtitle">12 review cards</string>
+    <string name="feature_budget_subtitle">This week ₩420,000</string>
+    <string name="feature_schedule_subtitle">Next class 09:00</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_language_label">Language</string>
+    <string name="settings_language_system">System default</string>
+    <string name="settings_language_korean">한국어</string>
+    <string name="settings_language_english">English</string>
+
+    <string name="action_delete">Delete</string>
+
+    <string name="checklist_subtitle">Keep track of what needs doing</string>
+    <string name="checklist_segment_today">Today\'s To-dos</string>
+    <string name="checklist_segment_after_return">To-dos After Returning</string>
+    <string name="checklist_empty">No to-dos yet. Start with the add button above.</string>
+    <string name="checklist_add_title">Add To-do</string>
+    <string name="checklist_add_placeholder">Enter a to-do</string>
+    <string name="checklist_add_confirm">Add</string>
+    <string name="checklist_edit_title">Edit To-do</string>
+    <string name="checklist_delete_confirm_title">Delete this?</string>
+    <string name="checklist_delete_confirm_message">This can\'t be undone.</string>
+    <string name="cd_add_item">Add to-do</string>
+    <string name="cd_edit_item">Edit to-do</string>
+</resources>

@@ -11,7 +11,9 @@ import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.CheckBox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.theme.YwAccentGold
 import com.example.travelutilityapp.ui.theme.YwAccentGoldSoft
 import com.example.travelutilityapp.ui.theme.YwPrimary
@@ -31,8 +33,8 @@ fun FeatureGrid(
                 icon = Icons.Outlined.CheckBox,
                 iconBackgroundColor = YwPrimarySoft,
                 iconTint = YwPrimary,
-                title = "체크리스트",
-                subtitle = "오늘 할 일 3개",
+                title = stringResource(R.string.nav_checklist),
+                subtitle = stringResource(R.string.feature_checklist_subtitle),
                 onClick = onChecklistClick,
                 modifier = Modifier.weight(1f)
             )
@@ -40,8 +42,8 @@ fun FeatureGrid(
                 icon = Icons.AutoMirrored.Outlined.MenuBook,
                 iconBackgroundColor = YwAccentGoldSoft,
                 iconTint = YwAccentGold,
-                title = "단어장",
-                subtitle = "복습 카드 12개",
+                title = stringResource(R.string.nav_vocab),
+                subtitle = stringResource(R.string.feature_vocab_subtitle),
                 onClick = onVocabClick,
                 modifier = Modifier.weight(1f)
             )
@@ -51,8 +53,8 @@ fun FeatureGrid(
                 icon = Icons.Outlined.AccountBalanceWallet,
                 iconBackgroundColor = YwAccentGoldSoft,
                 iconTint = YwAccentGold,
-                title = "가계부",
-                subtitle = "이번 주 42만원",
+                title = stringResource(R.string.nav_budget),
+                subtitle = stringResource(R.string.feature_budget_subtitle),
                 onClick = onBudgetClick,
                 modifier = Modifier.weight(1f)
             )
@@ -60,8 +62,8 @@ fun FeatureGrid(
                 icon = Icons.Outlined.CalendarMonth,
                 iconBackgroundColor = YwPrimarySoft,
                 iconTint = YwPrimary,
-                title = "시간표",
-                subtitle = "다음 수업 09:00",
+                title = stringResource(R.string.nav_schedule),
+                subtitle = stringResource(R.string.feature_schedule_subtitle),
                 onClick = onScheduleClick,
                 modifier = Modifier.weight(1f)
             )

@@ -18,8 +18,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.data.ScheduleRepository
 import com.example.travelutilityapp.data.TrainingPeriodPreferences
 import com.example.travelutilityapp.ui.components.AppTab
@@ -29,6 +31,7 @@ import com.example.travelutilityapp.ui.theme.YwBackground
 import kotlinx.coroutines.delay
 import java.time.LocalDate
 import java.time.LocalDateTime
+import kotlin.math.ceil
 
 private val LocalDateSaver = Saver<LocalDate, Long>(
     save = { it.toEpochDay() },
@@ -38,6 +41,8 @@ private val LocalDateSaver = Saver<LocalDate, Long>(
 @Composable
 fun HomeScreen(
     onNavigateToSchedule: () -> Unit = {},
+    onNavigateToChecklist: () -> Unit = {},
+    onNavigateToSettings: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -82,24 +87,43 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             HomeHeader(
-                greeting = "안녕, 여원이 !",
-                subtitle = "오늘도 화이팅 어학연수 생활"
+                greeting = stringResource(R.string.home_greeting),
+                subtitle = stringResource(R.string.home_subtitle),
+                onSettingsClick = onNavigateToSettings
             )
+            val dDayLabel = when {
+                stats.remainingDays > 0 -> "D-${stats.remainingDays}"
+                stats.remainingDays == 0L -> "D-DAY"
+                else -> stringResource(R.string.dday_finished)
+            }
+            val weeksLeftLabel = when {
+                stats.remainingDays > 0 ->
+                    stringResource(R.string.dday_weeks_left, ceil(stats.remainingDays / 7.0).toInt())
+                stats.remainingDays == 0L -> stringResource(R.string.dday_today)
+                else -> stringResource(R.string.dday_finished)
+            }
             DDayHeroCard(
                 dateRangeLabel = stats.dateRangeLabel,
-                dDayLabel = stats.dDayLabel,
-                weeksLeftLabel = stats.weeksLeftLabel,
+                dDayLabel = dDayLabel,
+                weeksLeftLabel = weeksLeftLabel,
                 progress = stats.progress,
                 onEditDatesClick = { showDatePicker = true }
             )
             NextClassPanel(status = nextClassStatus)
-            FeatureGrid(onScheduleClick = onNavigateToSchedule)
+            FeatureGrid(
+                onScheduleClick = onNavigateToSchedule,
+                onChecklistClick = onNavigateToChecklist
+            )
         }
         AppTabBar(
             selectedTab = selectedTab,
             onTabSelected = { tab ->
                 selectedTab = tab
-                if (tab == AppTab.Schedule) onNavigateToSchedule()
+                when (tab) {
+                    AppTab.Schedule -> onNavigateToSchedule()
+                    AppTab.Checklist -> onNavigateToChecklist()
+                    else -> {}
+                }
             },
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
         )

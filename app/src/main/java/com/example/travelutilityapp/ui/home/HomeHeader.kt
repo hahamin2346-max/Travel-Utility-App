@@ -17,9 +17,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.travelutilityapp.R
 import com.example.travelutilityapp.ui.theme.YwBorderSoft
 import com.example.travelutilityapp.ui.theme.YwSurface
 import com.example.travelutilityapp.ui.theme.YwTextPrimary
@@ -51,7 +53,7 @@ fun HomeHeader(
         ) {
             Icon(
                 imageVector = Icons.Outlined.Settings,
-                contentDescription = "설정",
+                contentDescription = stringResource(R.string.cd_settings),
                 tint = YwTextSecondary,
                 modifier = Modifier.size(18.dp)
             )

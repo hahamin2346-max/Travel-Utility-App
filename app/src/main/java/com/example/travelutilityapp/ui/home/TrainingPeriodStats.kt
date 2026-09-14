@@ -3,12 +3,14 @@ package com.example.travelutilityapp.ui.home
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import kotlin.math.ceil
 
+/**
+ * [remainingDays] is left un-formatted (positive/zero/negative) so the caller can render its
+ * D-Day and "weeks left" labels via localized string resources.
+ */
 data class TrainingPeriodStats(
     val dateRangeLabel: String,
-    val dDayLabel: String,
-    val weeksLeftLabel: String,
+    val remainingDays: Long,
     val progress: Float
 )
 
@@ -28,27 +30,9 @@ fun computeTrainingPeriodStats(
     val remainingDays = ChronoUnit.DAYS.between(today, end)
     val progress = (elapsedDays.toFloat() / totalDays.toFloat()).coerceIn(0f, 1f)
 
-    val dDayLabel: String
-    val weeksLeftLabel: String
-    when {
-        remainingDays > 0 -> {
-            dDayLabel = "D-$remainingDays"
-            weeksLeftLabel = "${ceil(remainingDays / 7.0).toInt()}주 남음"
-        }
-        remainingDays == 0L -> {
-            dDayLabel = "D-DAY"
-            weeksLeftLabel = "오늘 종료"
-        }
-        else -> {
-            dDayLabel = "연수 종료"
-            weeksLeftLabel = "연수 종료"
-        }
-    }
-
     return TrainingPeriodStats(
         dateRangeLabel = "${start.format(DATE_LABEL_FORMATTER)} - ${end.format(DATE_LABEL_FORMATTER)}",
-        dDayLabel = dDayLabel,
-        weeksLeftLabel = weeksLeftLabel,
+        remainingDays = remainingDays,
         progress = progress
     )
 }
