@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.travelutilityapp.data.withAppLanguage
 import com.example.travelutilityapp.notification.ClassReminderScheduler
+import com.example.travelutilityapp.ui.budget.BudgetScreen
 import com.example.travelutilityapp.ui.checklist.ChecklistScreen
 import com.example.travelutilityapp.ui.home.HomeScreen
 import com.example.travelutilityapp.ui.navigation.AppRoutes
@@ -60,6 +61,7 @@ class MainActivity : ComponentActivity() {
                                 onNavigateToSchedule = { navController.navigate(AppRoutes.SCHEDULE) },
                                 onNavigateToChecklist = { navController.navigate(AppRoutes.CHECKLIST) },
                                 onNavigateToVocab = { navController.navigate(AppRoutes.VOCAB) },
+                                onNavigateToBudget = { navController.navigate(AppRoutes.BUDGET) },
                                 onNavigateToSettings = { navController.navigate(AppRoutes.SETTINGS) }
                             )
                         }
@@ -69,7 +71,8 @@ class MainActivity : ComponentActivity() {
                                     navController.popBackStack(AppRoutes.HOME, inclusive = false)
                                 },
                                 onNavigateToChecklist = { navController.navigate(AppRoutes.CHECKLIST) },
-                                onNavigateToVocab = { navController.navigate(AppRoutes.VOCAB) }
+                                onNavigateToVocab = { navController.navigate(AppRoutes.VOCAB) },
+                                onNavigateToBudget = { navController.navigate(AppRoutes.BUDGET) }
                             )
                         }
                         composable(AppRoutes.CHECKLIST) {
@@ -78,7 +81,8 @@ class MainActivity : ComponentActivity() {
                                     navController.popBackStack(AppRoutes.HOME, inclusive = false)
                                 },
                                 onNavigateToSchedule = { navController.navigate(AppRoutes.SCHEDULE) },
-                                onNavigateToVocab = { navController.navigate(AppRoutes.VOCAB) }
+                                onNavigateToVocab = { navController.navigate(AppRoutes.VOCAB) },
+                                onNavigateToBudget = { navController.navigate(AppRoutes.BUDGET) }
                             )
                         }
                         composable(AppRoutes.VOCAB) {
@@ -88,7 +92,18 @@ class MainActivity : ComponentActivity() {
                                 },
                                 onNavigateToSchedule = { navController.navigate(AppRoutes.SCHEDULE) },
                                 onNavigateToChecklist = { navController.navigate(AppRoutes.CHECKLIST) },
+                                onNavigateToBudget = { navController.navigate(AppRoutes.BUDGET) },
                                 onStartTest = { source -> navController.navigate(AppRoutes.vocabTest(source.routeKey)) }
+                            )
+                        }
+                        composable(AppRoutes.BUDGET) {
+                            BudgetScreen(
+                                onNavigateHome = {
+                                    navController.popBackStack(AppRoutes.HOME, inclusive = false)
+                                },
+                                onNavigateToSchedule = { navController.navigate(AppRoutes.SCHEDULE) },
+                                onNavigateToChecklist = { navController.navigate(AppRoutes.CHECKLIST) },
+                                onNavigateToVocab = { navController.navigate(AppRoutes.VOCAB) }
                             )
                         }
                         composable(

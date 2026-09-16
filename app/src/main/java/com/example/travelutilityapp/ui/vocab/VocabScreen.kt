@@ -1,5 +1,6 @@
 package com.example.travelutilityapp.ui.vocab
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -65,6 +66,7 @@ fun VocabScreen(
     onNavigateHome: () -> Unit = {},
     onNavigateToSchedule: () -> Unit = {},
     onNavigateToChecklist: () -> Unit = {},
+    onNavigateToBudget: () -> Unit = {},
     onStartTest: (VocabTestSource) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
@@ -79,6 +81,8 @@ fun VocabScreen(
     var showTestSourceSheet by remember { mutableStateOf(false) }
     // null = normal screen; otherwise filtered to only show that source's words.
     var activeFilter by remember { mutableStateOf<VocabViewFilter?>(null) }
+    // Let the phone's system back button close the filtered view instead of leaving the screen.
+    BackHandler(enabled = activeFilter != null) { activeFilter = null }
     // Word tapped in a filtered view, pending the "move to learning list" confirm/cancel panel.
     var wordToMove by remember { mutableStateOf<VocabWord?>(null) }
     // Word tapped in a filtered view, pending delete confirmation.
@@ -395,6 +399,7 @@ fun VocabScreen(
                         AppTab.Home -> onNavigateHome()
                         AppTab.Schedule -> onNavigateToSchedule()
                         AppTab.Checklist -> onNavigateToChecklist()
+                        AppTab.Budget -> onNavigateToBudget()
                         else -> {}
                     }
                 },

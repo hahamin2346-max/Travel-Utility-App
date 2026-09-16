@@ -125,4 +125,18 @@
     <string name="vocab_test_dont_know">Don\'t Know</string>
     <string name="vocab_test_know">Know!</string>
     <string name="vocab_test_empty">No words to test.</string>
+
+    <string name="budget_screen_subtitle">Keep track of your spending, day by day</string>
+    <string name="budget_total_label">Total Spent</string>
+    <string name="budget_currency_peso">View in Peso</string>
+    <string name="budget_currency_krw">View in KRW</string>
+    <string name="budget_section_title">Expense History</string>
+    <string name="cd_add_expense">Add expense</string>
+    <string name="budget_empty">No expenses yet. Start with the add button above.</string>
+    <string name="budget_add_title">Add Expense</string>
+    <string name="budget_add_notice_krw">Entering in KRW.</string>
+    <string name="budget_add_notice_peso">Entering in Peso.</string>
+    <string name="budget_desc_placeholder">Enter a description</string>
+    <string name="budget_amount_placeholder">Enter an amount</string>
+    <string name="budget_add_confirm">Add</string>
 </resources>

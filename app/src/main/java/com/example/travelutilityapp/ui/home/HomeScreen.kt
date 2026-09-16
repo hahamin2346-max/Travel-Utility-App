@@ -43,6 +43,7 @@ fun HomeScreen(
     onNavigateToSchedule: () -> Unit = {},
     onNavigateToChecklist: () -> Unit = {},
     onNavigateToVocab: () -> Unit = {},
+    onNavigateToBudget: () -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
@@ -114,7 +115,8 @@ fun HomeScreen(
             FeatureGrid(
                 onScheduleClick = onNavigateToSchedule,
                 onChecklistClick = onNavigateToChecklist,
-                onVocabClick = onNavigateToVocab
+                onVocabClick = onNavigateToVocab,
+                onBudgetClick = onNavigateToBudget
             )
         }
         AppTabBar(
@@ -125,6 +127,7 @@ fun HomeScreen(
                     AppTab.Schedule -> onNavigateToSchedule()
                     AppTab.Checklist -> onNavigateToChecklist()
                     AppTab.Vocab -> onNavigateToVocab()
+                    AppTab.Budget -> onNavigateToBudget()
                     else -> {}
                 }
             },

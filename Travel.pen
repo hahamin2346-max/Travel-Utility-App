@@ -6151,6 +6151,46 @@
           "fill": "$border-soft"
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "DiQLr",
+      "x": 1763,
+      "y": -900,
+      "name": "App Icon",
+      "clip": true,
+      "width": 512,
+      "height": 512,
+      "fill": "#FFF9F4",
+      "cornerRadius": 114,
+      "layout": "vertical",
+      "gap": 4,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "text",
+          "id": "KrJkY",
+          "name": "JIC Wordmark",
+          "fill": "#D42B2B",
+          "content": "JIC",
+          "fontFamily": "Poppins",
+          "fontSize": 170,
+          "fontWeight": "800",
+          "letterSpacing": 2
+        },
+        {
+          "type": "text",
+          "id": "kQEJo",
+          "name": "Premium Label",
+          "fill": "#D42B2B",
+          "content": "PREMIUM",
+          "fontFamily": "Poppins",
+          "fontSize": 26,
+          "fontWeight": "600",
+          "letterSpacing": 6
+        }
+      ]
     }
   ],
   "variables": {

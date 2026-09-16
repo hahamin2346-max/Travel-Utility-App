@@ -5,6 +5,7 @@ object AppRoutes {
     const val SCHEDULE = "schedule"
     const val CHECKLIST = "checklist"
     const val VOCAB = "vocab"
+    const val BUDGET = "budget"
     const val SETTINGS = "settings"
     const val VOCAB_TEST = "vocab_test/{source}"
 

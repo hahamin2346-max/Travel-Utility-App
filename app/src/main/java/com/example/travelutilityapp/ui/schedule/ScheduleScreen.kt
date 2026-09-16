@@ -54,6 +54,7 @@ fun ScheduleScreen(
     onNavigateHome: () -> Unit = {},
     onNavigateToChecklist: () -> Unit = {},
     onNavigateToVocab: () -> Unit = {},
+    onNavigateToBudget: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -173,6 +174,7 @@ fun ScheduleScreen(
                         AppTab.Home -> onNavigateHome()
                         AppTab.Checklist -> onNavigateToChecklist()
                         AppTab.Vocab -> onNavigateToVocab()
+                        AppTab.Budget -> onNavigateToBudget()
                         else -> {}
                     }
                 },

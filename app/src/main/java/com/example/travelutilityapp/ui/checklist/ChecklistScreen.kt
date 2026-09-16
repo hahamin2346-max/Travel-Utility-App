@@ -51,6 +51,7 @@ fun ChecklistScreen(
     onNavigateHome: () -> Unit = {},
     onNavigateToSchedule: () -> Unit = {},
     onNavigateToVocab: () -> Unit = {},
+    onNavigateToBudget: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -180,6 +181,7 @@ fun ChecklistScreen(
                         AppTab.Home -> onNavigateHome()
                         AppTab.Schedule -> onNavigateToSchedule()
                         AppTab.Vocab -> onNavigateToVocab()
+                        AppTab.Budget -> onNavigateToBudget()
                         else -> {}
                     }
                 },
