@@ -58,16 +58,21 @@
     <string name="nav_vocab">Vocabulary</string>
     <string name="nav_budget">Budget</string>
 
-    <string name="feature_checklist_subtitle">3 tasks today</string>
-    <string name="feature_vocab_subtitle">12 review cards</string>
-    <string name="feature_budget_subtitle">This week ₩420,000</string>
-    <string name="feature_schedule_subtitle">Next class 09:00</string>
-
     <string name="settings_title">Settings</string>
     <string name="settings_language_label">Language</string>
     <string name="settings_language_system">System default</string>
     <string name="settings_language_korean">한국어</string>
     <string name="settings_language_english">English</string>
+
+    <string name="settings_notification_label">Notifications</string>
+    <string name="settings_notification_reminder_title">Class start reminder</string>
+    <string name="settings_notification_reminder_subtitle">Notify me 5 minutes before class starts</string>
+    <string name="settings_notification_permission_denied">Notifications aren\'t allowed. Please enable them in system settings.</string>
+
+    <string name="notification_channel_name">Class start reminder</string>
+    <string name="notification_channel_description">Sent 5 minutes before your next class starts</string>
+    <string name="notification_class_reminder_title">Class starting soon</string>
+    <string name="notification_class_reminder_body">Class starts in 5 minutes.</string>
 
     <string name="action_delete">Delete</string>
 
@@ -83,4 +88,41 @@
     <string name="checklist_delete_confirm_message">This can\'t be undone.</string>
     <string name="cd_add_item">Add to-do</string>
     <string name="cd_edit_item">Edit to-do</string>
+
+    <string name="vocab_screen_subtitle">Building your vocabulary, one word at a time</string>
+    <string name="vocab_test_title">Vocabulary Test</string>
+    <string name="vocab_test_subtitle">%1$d words to review</string>
+    <string name="vocab_test_start">Start</string>
+    <string name="vocab_section_title">Words I\'m Learning</string>
+    <string name="vocab_filter_dont_know">Words I Don\'t Know</string>
+    <string name="vocab_filter_CEFR">CEFR Words</string>
+    <string name="cd_add_vocab">Add word</string>
+    <string name="vocab_empty">No words yet. Start with the add button above.</string>
+    <string name="vocab_word_placeholder">Enter a word</string>
+    <string name="vocab_meaning_placeholder">Enter its meaning</string>
+    <string name="vocab_add_title">Add Word</string>
+    <string name="vocab_add_confirm">Add</string>
+    <string name="vocab_edit_title">Edit Word</string>
+    <string name="vocab_delete_confirm_title">Delete this?</string>
+    <string name="vocab_delete_confirm_message">This can\'t be undone.</string>
+    <string name="vocab_filter_empty">No words classified yet. They\'ll show up here after a vocab test.</string>
+    <string name="vocab_cefr_empty">No CEFR words to show.</string>
+    <string name="vocab_move_to_learning_title">Move to Words I\'m Learning</string>
+    <string name="vocab_move_to_learning_message">Add \'%1$s\' to your Words I\'m Learning list?</string>
+
+    <string name="action_close">Close</string>
+
+    <string name="vocab_test_source_title">Start Vocabulary Test</string>
+    <string name="vocab_test_source_subtitle">Choose which words to test</string>
+    <string name="vocab_test_source_my_title">Test My Words</string>
+    <string name="vocab_test_source_my_subtitle">Review the words you\'ve added</string>
+    <string name="vocab_test_source_dont_know_title">Test Words I Don\'t Know</string>
+    <string name="vocab_test_source_dont_know_subtitle">Focus on the words you\'re still learning</string>
+    <string name="vocab_test_source_cefr_title">Test CEFR Words</string>
+    <string name="vocab_test_source_cefr_subtitle">Check your level with a standard word set</string>
+
+    <string name="vocab_test_progress">%1$d / %2$d</string>
+    <string name="vocab_test_dont_know">Don\'t Know</string>
+    <string name="vocab_test_know">Know!</string>
+    <string name="vocab_test_empty">No words to test.</string>
 </resources>

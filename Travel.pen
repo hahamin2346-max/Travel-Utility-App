@@ -3784,10 +3784,9 @@
                   "name": "Dont Know View Button",
                   "width": "fill_container",
                   "height": 48,
-                  "fill": "$surface",
+                  "fill": "$accent-gold-soft",
                   "cornerRadius": 14,
                   "stroke": "$border-soft",
-                  "strokeWidth": 1,
                   "gap": 6,
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -3800,13 +3799,13 @@
                       "height": 15,
                       "icon": "frown",
                       "library": "lucide",
-                      "fill": "$text-secondary"
+                      "fill": "$accent-gold"
                     },
                     {
                       "type": "text",
                       "id": "A4vJH",
                       "name": "Dont Know Label",
-                      "fill": "$text-secondary",
+                      "fill": "$accent-gold",
                       "content": "몰라요ㅠ 단어 보기",
                       "fontFamily": "$font-body",
                       "fontSize": 12,
@@ -3817,7 +3816,7 @@
                 {
                   "type": "frame",
                   "id": "A4bRZ",
-                  "name": "Know View Button",
+                  "name": "CEFR View Button",
                   "width": "fill_container",
                   "height": 48,
                   "fill": "$primary-soft",
@@ -3829,19 +3828,19 @@
                     {
                       "type": "icon",
                       "id": "sMxk6",
-                      "name": "Know Icon",
+                      "name": "CEFR Icon",
                       "width": 15,
                       "height": 15,
-                      "icon": "smile",
+                      "icon": "award",
                       "library": "lucide",
                       "fill": "$primary"
                     },
                     {
                       "type": "text",
                       "id": "qo0zZ",
-                      "name": "Know Label",
+                      "name": "CEFR Label",
                       "fill": "$primary",
-                      "content": "알아요! 단어 보기",
+                      "content": "CEFR 단어보기",
                       "fontFamily": "$font-body",
                       "fontSize": 12,
                       "fontWeight": "600"
@@ -4573,24 +4572,62 @@
                     },
                     {
                       "type": "frame",
-                      "id": "YiX81",
-                      "name": "Wallet Badge",
-                      "width": 30,
-                      "height": 30,
+                      "id": "Um6PO",
+                      "name": "Currency Toggle",
                       "fill": "#FFFFFF33",
-                      "cornerRadius": 10,
-                      "justifyContent": "center",
-                      "alignItems": "center",
+                      "cornerRadius": 11,
+                      "gap": 2,
+                      "padding": 3,
                       "children": [
                         {
-                          "type": "icon",
-                          "id": "NldWE",
-                          "name": "Wallet Icon",
-                          "width": 15,
-                          "height": 15,
-                          "icon": "wallet",
-                          "library": "lucide",
-                          "fill": "#FFFFFF"
+                          "type": "frame",
+                          "id": "F0TBio",
+                          "name": "Currency Segment 페소로 보기",
+                          "fill": "#00000000",
+                          "cornerRadius": 8,
+                          "padding": [
+                            6,
+                            10
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "AkES7",
+                              "name": "Currency Segment Label",
+                              "fill": "#FFFFFFCC",
+                              "content": "페소로 보기",
+                              "fontFamily": "$font-body",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "RTh1m",
+                          "name": "Currency Segment 원화로 보기",
+                          "fill": "#FFFFFF",
+                          "cornerRadius": 8,
+                          "padding": [
+                            6,
+                            10
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "x2y7R",
+                              "name": "Currency Segment Label",
+                              "fill": "$primary",
+                              "content": "원화로 보기",
+                              "fontFamily": "$font-body",
+                              "fontSize": 10,
+                              "fontWeight": "600"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -5084,6 +5121,1034 @@
           "fontFamily": "$font-body",
           "fontSize": 14,
           "fontWeight": "600"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Pf6Lk",
+      "x": 873,
+      "y": -880,
+      "name": "Vocab Test Source Sheet",
+      "clip": true,
+      "width": 360,
+      "height": 780,
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "M0rIp",
+          "x": 0,
+          "y": 0,
+          "name": "Background Vocab",
+          "clip": true,
+          "width": 360,
+          "height": 780,
+          "fill": "$bg",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "UUTqS",
+              "name": "Status Bar",
+              "width": "fill_container",
+              "height": 40,
+              "padding": [
+                0,
+                20
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hOBm2",
+                  "name": "Time",
+                  "fill": "$text-primary",
+                  "content": "9:41",
+                  "fontFamily": "$font-body",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "ZSjUH",
+                  "name": "Status Icons",
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "N5SHk",
+                      "name": "Signal",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "signal",
+                      "library": "lucide",
+                      "fill": "$text-primary"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "PMsTr",
+                      "name": "Wifi",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "wifi",
+                      "library": "lucide",
+                      "fill": "$text-primary"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "D6UhLD",
+                      "name": "Battery",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "battery-full",
+                      "library": "lucide",
+                      "fill": "$text-primary"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "MlWYd",
+              "name": "Content Wrapper",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                4,
+                20,
+                0,
+                20
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "NvE25",
+                  "name": "Header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "y6nYs",
+                      "name": "Header Text",
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Sj4mm",
+                          "name": "Title",
+                          "fill": "$text-primary",
+                          "content": "단어장",
+                          "fontFamily": "$font-heading",
+                          "fontSize": 20,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "H7PzXS",
+                          "name": "Subtitle",
+                          "fill": "$text-secondary",
+                          "content": "오늘도 단어 하나씩 쌓아가요",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Q9fMnQ",
+                  "name": "Test CTA Card",
+                  "width": "fill_container",
+                  "fill": "$primary",
+                  "cornerRadius": 20,
+                  "padding": 18,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "cvvoE",
+                      "name": "Test Text Group",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "id8qN",
+                          "name": "Test Title",
+                          "fill": "#FFFFFF",
+                          "content": "단어 테스트",
+                          "fontFamily": "$font-heading",
+                          "fontSize": 15,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "tVkdJ",
+                          "name": "Test Subtitle",
+                          "fill": "#FFFFFFCC",
+                          "content": "복습할 단어 12개",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "OeQ2b",
+                      "name": "Test Start Button",
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 14,
+                      "gap": 4,
+                      "padding": [
+                        10,
+                        14
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "dbhK4",
+                          "name": "Test Start Label",
+                          "fill": "$primary",
+                          "content": "시작하기",
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "LgH6L",
+                          "name": "Test Start Icon",
+                          "width": 14,
+                          "height": 14,
+                          "icon": "chevron-right",
+                          "library": "lucide",
+                          "fill": "$primary"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cJvO9",
+                  "name": "Section Header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lIViI",
+                      "name": "Section Title",
+                      "fill": "$text-primary",
+                      "content": "학습 중인 단어",
+                      "fontFamily": "$font-heading",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "PVFQ1",
+                      "name": "Add Button",
+                      "width": 28,
+                      "height": 28,
+                      "fill": "$primary",
+                      "cornerRadius": 14,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "ddWUJ",
+                          "name": "Add Icon",
+                          "width": 13,
+                          "height": 13,
+                          "icon": "plus",
+                          "library": "lucide",
+                          "fill": "#FFFFFF"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DsN4p",
+                  "name": "Vocab List Card",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 390,
+                  "fill": "$surface",
+                  "cornerRadius": 20,
+                  "stroke": "$border-soft",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "padding": [
+                    4,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "id": "KyJUG",
+                      "type": "ref",
+                      "ref": "CQ86H",
+                      "name": "Row - accommodation",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kJBJD": {
+                          "content": "accommodation"
+                        },
+                        "w9Xj7": {
+                          "content": "숙소, 거처"
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LtW1a",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-soft"
+                    },
+                    {
+                      "id": "x8fQj",
+                      "type": "ref",
+                      "ref": "CQ86H",
+                      "name": "Row - commute",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kJBJD": {
+                          "content": "commute"
+                        },
+                        "w9Xj7": {
+                          "content": "통근하다"
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "V20AO",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-soft"
+                    },
+                    {
+                      "id": "QVlFo",
+                      "type": "ref",
+                      "ref": "CQ86H",
+                      "name": "Row - tuition",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kJBJD": {
+                          "content": "tuition"
+                        },
+                        "w9Xj7": {
+                          "content": "수업료, 등록금"
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "G4xJh",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-soft"
+                    },
+                    {
+                      "id": "w7icMd",
+                      "type": "ref",
+                      "ref": "CQ86H",
+                      "name": "Row - roommate",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kJBJD": {
+                          "content": "roommate"
+                        },
+                        "w9Xj7": {
+                          "content": "룸메이트"
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "pc4dO",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-soft"
+                    },
+                    {
+                      "id": "MFxlZ",
+                      "type": "ref",
+                      "ref": "CQ86H",
+                      "name": "Row - semester",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kJBJD": {
+                          "content": "semester"
+                        },
+                        "w9Xj7": {
+                          "content": "학기"
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "a9w8Q0",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-soft"
+                    },
+                    {
+                      "id": "D3in9W",
+                      "type": "ref",
+                      "ref": "CQ86H",
+                      "name": "Row - dormitory",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kJBJD": {
+                          "content": "dormitory"
+                        },
+                        "w9Xj7": {
+                          "content": "기숙사"
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wtFbB",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-soft"
+                    },
+                    {
+                      "id": "i44joP",
+                      "type": "ref",
+                      "ref": "CQ86H",
+                      "name": "Row - grocery",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kJBJD": {
+                          "content": "grocery"
+                        },
+                        "w9Xj7": {
+                          "content": "식료품"
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "h7adSM",
+                      "name": "Divider",
+                      "width": "fill_container",
+                      "height": 1,
+                      "fill": "$border-soft"
+                    },
+                    {
+                      "id": "JAaTa",
+                      "type": "ref",
+                      "ref": "CQ86H",
+                      "name": "Row - visa",
+                      "width": "fill_container",
+                      "descendants": {
+                        "kJBJD": {
+                          "content": "visa"
+                        },
+                        "w9Xj7": {
+                          "content": "비자"
+                        }
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "URjxL",
+                      "layoutPosition": "absolute",
+                      "x": 0,
+                      "y": 354,
+                      "name": "Scroll Fade",
+                      "width": 320,
+                      "height": 36,
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 180,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FFFFFF00",
+                            "position": 0
+                          },
+                          {
+                            "color": "#FFFFFF",
+                            "position": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "GXnOF",
+                  "name": "View Filter Buttons",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "HqybU",
+                      "name": "Dont Know View Button",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$surface",
+                      "cornerRadius": 14,
+                      "stroke": "$border-soft",
+                      "strokeWidth": 1,
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "EGVRV",
+                          "name": "Dont Know Icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "frown",
+                          "library": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "UMcQU",
+                          "name": "Dont Know Label",
+                          "fill": "$text-secondary",
+                          "content": "몰라요ㅠ 단어 보기",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RP3Xf",
+                      "name": "Know View Button",
+                      "width": "fill_container",
+                      "height": 48,
+                      "fill": "$primary-soft",
+                      "cornerRadius": 14,
+                      "gap": 6,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "e7lku",
+                          "name": "Know Icon",
+                          "width": 15,
+                          "height": 15,
+                          "icon": "smile",
+                          "library": "lucide",
+                          "fill": "$primary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "MAcoA",
+                          "name": "Know Label",
+                          "fill": "$primary",
+                          "content": "알아요! 단어 보기",
+                          "fontFamily": "$font-body",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "F9Jmzr",
+              "name": "Tab Bar Wrapper",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [
+                0,
+                16,
+                12,
+                16
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zEn2Y",
+                  "name": "Tab Bar",
+                  "width": "fill_container",
+                  "height": 56,
+                  "fill": "#FFFFFFB3",
+                  "cornerRadius": 28,
+                  "stroke": "$border-soft",
+                  "strokeWidth": 1,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#2B241F1F",
+                    "offset": {
+                      "x": 0,
+                      "y": 6
+                    },
+                    "blur": 20
+                  },
+                  "padding": 6,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "sjYCJ",
+                      "name": "Tab 홈",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "#00000000",
+                      "cornerRadius": 22,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "tbfuH",
+                          "name": "Tab Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "house",
+                          "library": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GxIdN",
+                          "name": "Tab Label",
+                          "fill": "$text-secondary",
+                          "content": "홈",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "BFRYc",
+                      "name": "Tab 시간표",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "#00000000",
+                      "cornerRadius": 22,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "GwAzf",
+                          "name": "Tab Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "calendar-clock",
+                          "library": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "yHH47",
+                          "name": "Tab Label",
+                          "fill": "$text-secondary",
+                          "content": "시간표",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jQQTg",
+                      "name": "Tab 체크리스트",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "#00000000",
+                      "cornerRadius": 22,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "RVpu9",
+                          "name": "Tab Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "square-check",
+                          "library": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "dZbPb",
+                          "name": "Tab Label",
+                          "fill": "$text-secondary",
+                          "content": "체크리스트",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "mdKip",
+                      "name": "Tab 단어장",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "$primary-soft",
+                      "cornerRadius": 22,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "wTWbz",
+                          "name": "Tab Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "book-open",
+                          "library": "lucide",
+                          "fill": "$primary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "b2jwfW",
+                          "name": "Tab Label",
+                          "fill": "$primary",
+                          "content": "단어장",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RdL96",
+                      "name": "Tab 가계부",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "fill": "#00000000",
+                      "cornerRadius": 22,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "V6iZN",
+                          "name": "Tab Icon",
+                          "width": 18,
+                          "height": 18,
+                          "icon": "wallet",
+                          "library": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "GxaW8",
+                          "name": "Tab Label",
+                          "fill": "$text-secondary",
+                          "content": "가계부",
+                          "fontFamily": "$font-body",
+                          "fontSize": 9,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "raq3t",
+          "x": 0,
+          "y": 0,
+          "name": "Dim Overlay",
+          "width": 360,
+          "height": 780,
+          "fill": "#20140E80"
+        },
+        {
+          "type": "frame",
+          "id": "b1sLG",
+          "x": 0,
+          "y": 0,
+          "name": "Sheet Anchor",
+          "width": 360,
+          "height": 780,
+          "layout": "vertical",
+          "justifyContent": "end",
+          "children": [
+            {
+              "type": "frame",
+              "id": "N2a06d",
+              "name": "Test Source Sheet",
+              "width": "fill_container",
+              "fill": "$surface",
+              "cornerRadius": [
+                24,
+                24,
+                0,
+                0
+              ],
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                10,
+                20,
+                28,
+                20
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fVNGj",
+                  "name": "Handle Wrapper",
+                  "width": "fill_container",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "YUDv8",
+                      "name": "Handle",
+                      "width": 40,
+                      "height": 4,
+                      "fill": "$border-soft",
+                      "cornerRadius": 2
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "G0JEG3",
+                  "name": "Sheet Header",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "w8btq",
+                      "name": "Sheet Title",
+                      "fill": "$text-primary",
+                      "content": "단어 테스트 시작하기",
+                      "fontFamily": "$font-heading",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "R4sQ0",
+                      "name": "Sheet Subtitle",
+                      "fill": "$text-secondary",
+                      "content": "어떤 단어로 테스트할지 선택해주세요",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "id": "zqSIT",
+                  "type": "ref",
+                  "ref": "iqfwk",
+                  "name": "내 단어로 시험보기",
+                  "width": "fill_container",
+                  "descendants": {
+                    "Eag0Q": {
+                      "fill": "$primary-soft"
+                    },
+                    "PK4Oa": {
+                      "icon": "book-user",
+                      "fill": "$primary"
+                    },
+                    "edEtv": {
+                      "content": "내 단어로 시험보기"
+                    },
+                    "M7RcoP": {
+                      "content": "직접 등록한 단어로 복습해요"
+                    }
+                  }
+                },
+                {
+                  "id": "f4mPS",
+                  "type": "ref",
+                  "ref": "iqfwk",
+                  "name": "몰라요ㅠ 단어로 시험보기",
+                  "width": "fill_container",
+                  "descendants": {
+                    "Eag0Q": {
+                      "fill": "$accent-gold-soft"
+                    },
+                    "PK4Oa": {
+                      "icon": "frown",
+                      "fill": "$accent-gold"
+                    },
+                    "edEtv": {
+                      "content": "몰라요ㅠ 단어로 시험보기"
+                    },
+                    "M7RcoP": {
+                      "content": "아직 헷갈리는 단어만 모아서 풀어요"
+                    }
+                  }
+                },
+                {
+                  "id": "DZ5El",
+                  "type": "ref",
+                  "ref": "iqfwk",
+                  "name": "CEFR단어로 시험보기",
+                  "width": "fill_container",
+                  "descendants": {
+                    "Eag0Q": {
+                      "fill": "$primary-soft"
+                    },
+                    "PK4Oa": {
+                      "icon": "award",
+                      "fill": "$primary"
+                    },
+                    "edEtv": {
+                      "content": "CEFR단어로 시험보기"
+                    },
+                    "M7RcoP": {
+                      "content": "표준 단어 세트로 실력을 점검해요"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "iqfwk",
+      "x": 0,
+      "y": -900,
+      "name": "Test Source Option",
+      "reusable": true,
+      "width": 320,
+      "fill": "$bg",
+      "cornerRadius": 16,
+      "gap": 12,
+      "padding": 14,
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Eag0Q",
+          "name": "Option Badge",
+          "width": 40,
+          "height": 40,
+          "fill": "$primary-soft",
+          "cornerRadius": 12,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "PK4Oa",
+              "name": "Option Icon",
+              "width": 19,
+              "height": 19,
+              "icon": "book-user",
+              "library": "lucide",
+              "fill": "$primary"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ArwEB",
+          "name": "Option Text Group",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 2,
+          "children": [
+            {
+              "type": "text",
+              "id": "edEtv",
+              "name": "Option Title",
+              "fill": "$text-primary",
+              "content": "내 단어로 시험보기",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "M7RcoP",
+              "name": "Option Sub",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "직접 등록한 단어로 복습해요",
+              "fontFamily": "$font-body",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "icon",
+          "id": "GR15y",
+          "name": "Option Chevron",
+          "width": 16,
+          "height": 16,
+          "icon": "chevron-right",
+          "library": "lucide",
+          "fill": "$border-soft"
         }
       ]
     }

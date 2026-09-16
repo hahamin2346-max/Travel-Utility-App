@@ -50,6 +50,7 @@ import com.example.travelutilityapp.ui.theme.YwTextSecondary
 fun ChecklistScreen(
     onNavigateHome: () -> Unit = {},
     onNavigateToSchedule: () -> Unit = {},
+    onNavigateToVocab: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -178,6 +179,7 @@ fun ChecklistScreen(
                     when (tab) {
                         AppTab.Home -> onNavigateHome()
                         AppTab.Schedule -> onNavigateToSchedule()
+                        AppTab.Vocab -> onNavigateToVocab()
                         else -> {}
                     }
                 },

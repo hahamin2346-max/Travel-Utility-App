@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.travelutilityapp.R
 import com.example.travelutilityapp.data.ScheduleRepository
+import com.example.travelutilityapp.notification.ClassReminderScheduler
 import com.example.travelutilityapp.ui.components.AppTab
 import com.example.travelutilityapp.ui.components.AppTabBar
 import com.example.travelutilityapp.ui.components.ScheduleRow
@@ -52,6 +53,7 @@ import com.example.travelutilityapp.ui.theme.YwTextSecondary
 fun ScheduleScreen(
     onNavigateHome: () -> Unit = {},
     onNavigateToChecklist: () -> Unit = {},
+    onNavigateToVocab: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -170,6 +172,7 @@ fun ScheduleScreen(
                     when (tab) {
                         AppTab.Home -> onNavigateHome()
                         AppTab.Checklist -> onNavigateToChecklist()
+                        AppTab.Vocab -> onNavigateToVocab()
                         else -> {}
                     }
                 },
@@ -202,6 +205,7 @@ fun ScheduleScreen(
             onSave = { updated ->
                 entries = updated
                 repository.save(updated)
+                ClassReminderScheduler.reschedule(context)
                 showEditSheet = false
             }
         )
@@ -213,6 +217,7 @@ fun ScheduleScreen(
             onImported = { imported ->
                 entries = imported
                 repository.save(imported)
+                ClassReminderScheduler.reschedule(context)
                 showLmsImport = false
             }
         )

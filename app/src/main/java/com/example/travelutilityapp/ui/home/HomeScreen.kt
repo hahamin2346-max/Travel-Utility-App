@@ -42,6 +42,7 @@ private val LocalDateSaver = Saver<LocalDate, Long>(
 fun HomeScreen(
     onNavigateToSchedule: () -> Unit = {},
     onNavigateToChecklist: () -> Unit = {},
+    onNavigateToVocab: () -> Unit = {},
     onNavigateToSettings: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
@@ -112,7 +113,8 @@ fun HomeScreen(
             NextClassPanel(status = nextClassStatus)
             FeatureGrid(
                 onScheduleClick = onNavigateToSchedule,
-                onChecklistClick = onNavigateToChecklist
+                onChecklistClick = onNavigateToChecklist,
+                onVocabClick = onNavigateToVocab
             )
         }
         AppTabBar(
@@ -122,6 +124,7 @@ fun HomeScreen(
                 when (tab) {
                     AppTab.Schedule -> onNavigateToSchedule()
                     AppTab.Checklist -> onNavigateToChecklist()
+                    AppTab.Vocab -> onNavigateToVocab()
                     else -> {}
                 }
             },

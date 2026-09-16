@@ -1,15 +1,17 @@
-package com.example.travelutilityapp.ui.home
+package com.example.travelutilityapp.ui.vocab
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,37 +27,46 @@ import com.example.travelutilityapp.ui.theme.YwSurface
 import com.example.travelutilityapp.ui.theme.YwTextPrimary
 import com.example.travelutilityapp.ui.theme.YwTextSecondary
 
+/** Mirrors Pencil's reusable "Test Source Option" component. */
 @Composable
-fun FeatureCard(
+fun VocabTestSourceOptionRow(
     icon: ImageVector,
-    iconBackgroundColor: Color,
     iconTint: Color,
+    iconBackground: Color,
     title: String,
-    onClick: () -> Unit = {},
+    subtitle: String,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(YwSurface, RoundedCornerShape(20.dp))
-            .border(1.dp, YwBorderSoft, RoundedCornerShape(20.dp))
+            .background(YwSurface, RoundedCornerShape(16.dp))
             .clickable(onClick = onClick)
-            .padding(13.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+            .padding(14.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Box(
             modifier = Modifier
-                .size(36.dp)
-                .background(iconBackgroundColor, RoundedCornerShape(11.dp)),
+                .size(40.dp)
+                .background(iconBackground, RoundedCornerShape(12.dp)),
             contentAlignment = Alignment.Center
         ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                tint = iconTint,
-                modifier = Modifier.size(18.dp)
-            )
+            Icon(imageVector = icon, contentDescription = null, tint = iconTint, modifier = Modifier.size(19.dp))
         }
-        Text(text = title, color = YwTextPrimary, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(2.dp)
+        ) {
+            Text(text = title, color = YwTextPrimary, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+            Text(text = subtitle, color = YwTextSecondary, fontSize = 12.sp)
+        }
+        Icon(
+            imageVector = Icons.AutoMirrored.Outlined.KeyboardArrowRight,
+            contentDescription = null,
+            tint = YwBorderSoft,
+            modifier = Modifier.size(16.dp)
+        )
     }
 }

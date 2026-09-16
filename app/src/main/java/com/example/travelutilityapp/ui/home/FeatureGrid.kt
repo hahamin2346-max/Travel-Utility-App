@@ -34,7 +34,6 @@ fun FeatureGrid(
                 iconBackgroundColor = YwPrimarySoft,
                 iconTint = YwPrimary,
                 title = stringResource(R.string.nav_checklist),
-                subtitle = stringResource(R.string.feature_checklist_subtitle),
                 onClick = onChecklistClick,
                 modifier = Modifier.weight(1f)
             )
@@ -43,7 +42,6 @@ fun FeatureGrid(
                 iconBackgroundColor = YwAccentGoldSoft,
                 iconTint = YwAccentGold,
                 title = stringResource(R.string.nav_vocab),
-                subtitle = stringResource(R.string.feature_vocab_subtitle),
                 onClick = onVocabClick,
                 modifier = Modifier.weight(1f)
             )
@@ -54,7 +52,6 @@ fun FeatureGrid(
                 iconBackgroundColor = YwAccentGoldSoft,
                 iconTint = YwAccentGold,
                 title = stringResource(R.string.nav_budget),
-                subtitle = stringResource(R.string.feature_budget_subtitle),
                 onClick = onBudgetClick,
                 modifier = Modifier.weight(1f)
             )
@@ -63,7 +60,6 @@ fun FeatureGrid(
                 iconBackgroundColor = YwPrimarySoft,
                 iconTint = YwPrimary,
                 title = stringResource(R.string.nav_schedule),
-                subtitle = stringResource(R.string.feature_schedule_subtitle),
                 onClick = onScheduleClick,
                 modifier = Modifier.weight(1f)
             )
