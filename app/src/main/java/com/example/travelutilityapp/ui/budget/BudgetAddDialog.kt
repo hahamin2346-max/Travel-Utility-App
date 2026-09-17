@@ -31,11 +31,6 @@ fun BudgetAddDialog(
     var description by remember { mutableStateOf("") }
     var amountText by remember { mutableStateOf("") }
 
-    val noticeRes = if (currentCurrency == Currency.PESO) {
-        R.string.budget_add_notice_peso
-    } else {
-        R.string.budget_add_notice_krw
-    }
     val amount = amountText.toLongOrNull()
 
     AlertDialog(
@@ -43,7 +38,7 @@ fun BudgetAddDialog(
         title = { Text(stringResource(R.string.budget_add_title)) },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(stringResource(noticeRes))
+                Text(stringResource(R.string.budget_add_notice, currentCurrency.displayName()))
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },

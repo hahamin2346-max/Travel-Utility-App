@@ -18,9 +18,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.travelutilityapp.R
 import com.example.travelutilityapp.data.BudgetRepository
+import com.example.travelutilityapp.data.ExchangeRateService
 import com.example.travelutilityapp.ui.components.AppTab
 import com.example.travelutilityapp.ui.components.AppTabBar
 import com.example.travelutilityapp.ui.theme.TravelUtilityAppTheme
@@ -45,6 +50,9 @@ import com.example.travelutilityapp.ui.theme.YwPrimary
 import com.example.travelutilityapp.ui.theme.YwSurface
 import com.example.travelutilityapp.ui.theme.YwTextPrimary
 import com.example.travelutilityapp.ui.theme.YwTextSecondary
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @Composable
 fun BudgetScreen(
@@ -58,12 +66,29 @@ fun BudgetScreen(
     val repository = remember { BudgetRepository(context) }
 
     var entries by remember { mutableStateOf(repository.load()) }
-    var displayCurrency by remember { mutableStateOf(Currency.KRW) }
+    var currencyPair by remember { mutableStateOf(repository.loadCurrencyPair()) }
+    var displayCurrency by remember { mutableStateOf(currencyPair.second) }
     var showAddDialog by remember { mutableStateOf(false) }
+    var showCurrencySettings by remember { mutableStateOf(false) }
+    var entryPendingDelete by remember { mutableStateOf<ExpenseEntry?>(null) }
     var selectedTab by remember { mutableStateOf(AppTab.Budget) }
 
+    LaunchedEffect(Unit) {
+        repository.loadExchangeRates()?.let { ExchangeRates.applyCached(it) }
+        ExchangeRateService.fetchRatesToKrw()?.let { live ->
+            ExchangeRates.applyLive(live)
+            repository.saveExchangeRates(live)
+        }
+    }
+
     fun addEntry(description: String, amount: Long) {
-        val updated = entries + ExpenseEntry(description = description, amount = amount, currency = displayCurrency)
+        val updated = listOf(ExpenseEntry(description = description, amount = amount, currency = displayCurrency)) + entries
+        entries = updated
+        repository.save(updated)
+    }
+
+    fun deleteEntry(entry: ExpenseEntry) {
+        val updated = entries.filterNot { it.id == entry.id }
         entries = updated
         repository.save(updated)
     }
@@ -82,18 +107,39 @@ fun BudgetScreen(
                     .padding(start = 20.dp, end = 20.dp, top = 4.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                    Text(
-                        text = stringResource(R.string.nav_budget),
-                        color = YwTextPrimary,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Text(
-                        text = stringResource(R.string.budget_screen_subtitle),
-                        color = YwTextSecondary,
-                        fontSize = 13.sp
-                    )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                        Text(
+                            text = stringResource(R.string.nav_budget),
+                            color = YwTextPrimary,
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            text = stringResource(R.string.budget_screen_subtitle),
+                            color = YwTextSecondary,
+                            fontSize = 13.sp
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .size(36.dp)
+                            .background(YwSurface, CircleShape)
+                            .border(1.dp, YwBorderSoft, CircleShape)
+                            .clickable { showCurrencySettings = true },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Settings,
+                            contentDescription = stringResource(R.string.cd_currency_settings),
+                            tint = YwTextSecondary,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
                 }
 
                 Column(
@@ -120,16 +166,13 @@ fun BudgetScreen(
                                 .padding(3.dp),
                             horizontalArrangement = Arrangement.spacedBy(2.dp)
                         ) {
-                            CurrencySegment(
-                                label = stringResource(R.string.budget_currency_peso),
-                                selected = displayCurrency == Currency.PESO,
-                                onClick = { displayCurrency = Currency.PESO }
-                            )
-                            CurrencySegment(
-                                label = stringResource(R.string.budget_currency_krw),
-                                selected = displayCurrency == Currency.KRW,
-                                onClick = { displayCurrency = Currency.KRW }
-                            )
+                            listOf(currencyPair.first, currencyPair.second).forEach { currency ->
+                                CurrencySegment(
+                                    label = stringResource(R.string.budget_currency_view, currency.displayName()),
+                                    selected = displayCurrency == currency,
+                                    onClick = { displayCurrency = currency }
+                                )
+                            }
                         }
                     }
                     Text(
@@ -137,6 +180,12 @@ fun BudgetScreen(
                         color = Color.White,
                         fontSize = 34.sp,
                         fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = ExchangeRates.lastFetchedAt?.let { stringResource(R.string.budget_rate_updated, formatRateTimestamp(it)) }
+                            ?: stringResource(R.string.budget_rate_fallback),
+                        color = Color.White.copy(alpha = 0.7f),
+                        fontSize = 11.sp
                     )
                 }
 
@@ -190,7 +239,8 @@ fun BudgetScreen(
                             ExpenseRow(
                                 date = entry.dateLabel,
                                 description = entry.description,
-                                price = formatAmount(entry.amountIn(displayCurrency), displayCurrency)
+                                price = formatAmount(entry.amountIn(displayCurrency), displayCurrency),
+                                onDelete = { entryPendingDelete = entry }
                             )
                             if (index != entries.lastIndex) {
                                 Box(
@@ -231,7 +281,48 @@ fun BudgetScreen(
             }
         )
     }
+
+    if (showCurrencySettings) {
+        CurrencySettingsDialog(
+            currentPair = currencyPair,
+            onDismiss = { showCurrencySettings = false },
+            onConfirm = { pair ->
+                currencyPair = pair
+                repository.saveCurrencyPair(pair)
+                if (displayCurrency != pair.first && displayCurrency != pair.second) {
+                    displayCurrency = pair.second
+                }
+                showCurrencySettings = false
+            }
+        )
+    }
+
+    entryPendingDelete?.let { target ->
+        AlertDialog(
+            onDismissRequest = { entryPendingDelete = null },
+            title = { Text(stringResource(R.string.budget_delete_confirm_title)) },
+            text = { Text(stringResource(R.string.budget_delete_confirm_message)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    deleteEntry(target)
+                    entryPendingDelete = null
+                }) {
+                    Text(stringResource(R.string.action_delete), color = YwPrimary)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { entryPendingDelete = null }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
+            }
+        )
+    }
 }
+
+private val RATE_TIMESTAMP_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("M.d HH:mm")
+
+private fun formatRateTimestamp(epochMillis: Long): String =
+    Instant.ofEpochMilli(epochMillis).atZone(ZoneId.systemDefault()).format(RATE_TIMESTAMP_FORMATTER)
 
 @Composable
 private fun CurrencySegment(label: String, selected: Boolean, onClick: () -> Unit) {
